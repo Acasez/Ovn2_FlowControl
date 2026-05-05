@@ -26,7 +26,7 @@ namespace Ovn2_FlowControl
 
             if (string.IsNullOrWhiteSpace(mening))
             {
-                Console.WriteLine("Du måste skriva en mening.");
+                Helper.WriteErrorMessage("Du måste skriva en mening.");
                 return;
             }
 

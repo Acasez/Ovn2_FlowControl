@@ -48,7 +48,7 @@ namespace FlowControl
                     Textmanipulation.DetTredjeOrdet();
                     break;
                 default:
-                    Console.WriteLine("Felaktig input, välj 0-4.");
+                    Helper.WriteErrorMessage("Felaktig input, välj 0-4.");
                     break;
             }
 

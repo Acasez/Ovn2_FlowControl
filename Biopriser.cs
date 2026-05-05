@@ -56,7 +56,7 @@ namespace Ovn2_FlowControl
 
             if (!int.TryParse(antalInput, out int antal) || antal <= 0)
             {
-                Console.WriteLine("Ogiltigt antal personer.");
+                Helper.WriteErrorMessage("Ogiltigt antal personer.");
                 return;
             }
 
