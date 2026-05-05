@@ -8,16 +8,16 @@ namespace FlowControl
         static void Main(string[] args)
         {
             bool running = true;
-
+            const string loopIntro = "Välkommen till huvudmenyn. \n" +
+                "Skriv en siffra för att välja funktion. \n" +
+                "0 = Avsluta \n" +
+                "1 = Pris för en person \n" +
+                "2 = Pris för sällskap \n" +
+                "3 = Upprepa tio gånger \n" +
+                "4 = Det tredje ordet";
             while (running)
             {
-                Console.WriteLine("Välkommen till huvudmenyn.");
-                Console.WriteLine("Skriv en siffra för att välja funktion.");
-                Console.WriteLine("0 = Avsluta");
-                Console.WriteLine("1 = Ungdom eller pensionär");
-                Console.WriteLine("2 = Pris för sällskap");
-                Console.WriteLine("3 = Upprepa tio gånger");
-                Console.WriteLine("4 = Det tredje ordet");
+                Console.WriteLine(loopIntro);
                 Console.Write("Ditt val: ");
 
                 string? input = Console.ReadLine();
@@ -112,7 +112,7 @@ namespace FlowControl
 
             for (int i = 1; i <= antal; i++)
             {
-                Console.Write("Person " + i);
+                Console.Write("Person " + i + " - ");
                 int? returnedCost = null;
                 while (returnedCost == null)
                 {
