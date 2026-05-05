@@ -18,41 +18,42 @@ namespace FlowControl
                 "4 = Det tredje ordet";
             while (running)
             {
-                Console.WriteLine(loopIntro);
-                Console.Write("Ditt val: ");
-
-                string? input = Console.ReadLine();
-
-                switch (input)
-                {
-                    case "0":
-                        running = false;
-                        Console.WriteLine("Programmet avslutas.");
-                        break;
-                    case "1":
-                        Biopriser.ReturneraPris();
-                        break;
-                    case "2":
-                        Biopriser.PrisForSallskap();
-                        break;
-                    case "3":
-                        Textmanipulation.UpprepaTioGanger();
-                        break;
-                    case "4":
-                        Textmanipulation.DetTredjeOrdet();
-                        break;
-                    default:
-                        Console.WriteLine("Felaktig input, välj 0-4.");
-                        break;
-                }
-
-                Console.WriteLine();
+                LoopDisplay(running, loopIntro);
             }
         }
 
-        static void Loopdisplay
+        public static bool LoopDisplay(bool running, string loopIntro)
         {
+            Console.WriteLine(loopIntro);
+            Console.Write("Ditt val: ");
 
+            string? input = Console.ReadLine();
+
+            switch (input)
+            {
+                case "0":
+                    running = false;
+                    Console.WriteLine("Programmet avslutas.");
+                    break;
+                case "1":
+                    Biopriser.ReturneraPris();
+                    break;
+                case "2":
+                    Biopriser.PrisForSallskap();
+                    break;
+                case "3":
+                    Textmanipulation.UpprepaTioGanger();
+                    break;
+                case "4":
+                    Textmanipulation.DetTredjeOrdet();
+                    break;
+                default:
+                    Console.WriteLine("Felaktig input, välj 0-4.");
+                    break;
+            }
+
+            Console.WriteLine();
+            return running;
         }
     }
 }
