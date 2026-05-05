@@ -1,4 +1,5 @@
 ﻿
+using Ovn2_FlowControl;
 using System;
 
 namespace FlowControl
@@ -28,23 +29,18 @@ namespace FlowControl
                         running = false;
                         Console.WriteLine("Programmet avslutas.");
                         break;
-
                     case "1":
-                        ReturneraPris();
+                        Biopriser.ReturneraPris();
                         break;
-
                     case "2":
-                        PrisForSallskap();
+                        Biopriser.PrisForSallskap();
                         break;
-
                     case "3":
-                        UpprepaTioGanger();
+                        Textmanipulation.UpprepaTioGanger();
                         break;
-
                     case "4":
-                        DetTredjeOrdet();
+                        Textmanipulation.DetTredjeOrdet();
                         break;
-
                     default:
                         Console.WriteLine("Felaktig input, välj 0-4.");
                         break;
@@ -54,110 +50,9 @@ namespace FlowControl
             }
         }
 
-        static int? ReturneraPris()
+        static void Loopdisplay
         {
-            int freePrice = 0;
-            int youthPrice = 80;
-            int seniorPrice = 90;
-            int adultPrice = 120;
 
-            Console.Write("Ange ålder: ");
-            string? input = Console.ReadLine();
-
-            if (!int.TryParse(input, out int alder))    // Jämför med int.Parse(input) --> "hej" --> Exception
-            {
-                Console.WriteLine("Ogiltig ålder.");
-                return null;
-            }
-
-            if (alder < 20)
-            {
-                if (alder < 5)
-                {
-                    Console.WriteLine("Barn kan se gratis!");
-                    return freePrice;
-                }
-                Console.WriteLine("Ungdomspris: 80kr");
-                return youthPrice;
-            }
-            else if (alder > 64)
-            {
-                if (alder > 100)
-                {
-                    Console.WriteLine("Grattis, du kan också se gratis!");
-                    return freePrice;
-                }
-                Console.WriteLine("Pensionärspris: 90kr");
-                return seniorPrice;
-            }
-            else
-            {
-                Console.WriteLine("Standardpris: 120kr");
-                return adultPrice;
-            }
-        }
-
-        static void PrisForSallskap()
-        {
-            Console.Write("Hur många personer är ni? ");
-            string? antalInput = Console.ReadLine();
-
-            if (!int.TryParse(antalInput, out int antal) || antal <= 0)
-            {
-                Console.WriteLine("Ogiltigt antal personer.");
-                return;
-            }
-
-            int total = 0;
-
-            for (int i = 1; i <= antal; i++)
-            {
-                Console.Write("Person " + i + " - ");
-                int? returnedCost = null;
-                while (returnedCost == null)
-                {
-                    returnedCost = ReturneraPris();
-                }
-                total += (int)returnedCost;
-            }
-
-            Console.WriteLine($"Antal personer: {antal}");
-            Console.WriteLine($"Totalkostnad: {total} kr");
-        }
-
-        static void UpprepaTioGanger()
-        {
-            Console.Write("Skriv en text: ");
-            string? text = Console.ReadLine();
-
-            for (int i = 1; i <= 10; i++)
-            {
-                Console.Write($"{i}. {text} ");
-            }
-
-            Console.WriteLine();
-        }
-
-        static void DetTredjeOrdet()
-        {
-            Console.Write("Skriv en mening med minst 3 ord: ");
-            string? mening = Console.ReadLine();
-
-            if (string.IsNullOrWhiteSpace(mening))
-            {
-                Console.WriteLine("Du måste skriva en mening.");
-                return;
-            }
-
-            string[] ord = mening.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-
-            if (ord.Length < 3)
-            {
-                Console.WriteLine("Mening måste innehålla minst 3 ord.");
-                return;
-            }
-
-            Console.WriteLine($"Det tredje ordet är: {ord[2]}");
         }
     }
 }
