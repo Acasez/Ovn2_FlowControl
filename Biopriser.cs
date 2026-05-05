@@ -16,9 +16,9 @@ namespace Ovn2_FlowControl
             Console.Write("Ange ålder: ");
             string? input = Console.ReadLine();
 
-            if (!int.TryParse(input, out int alder))    // Jämför med int.Parse(input) --> "hej" --> Exception
+            if (!int.TryParse(input, out int alder) || alder < 0) 
             {
-                Console.WriteLine("Ogiltig ålder.");
+                Helper.WriteErrorMessage("Ogiltig ålder.");
                 return null;
             }
 
