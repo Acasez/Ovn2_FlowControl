@@ -30,7 +30,7 @@ namespace FlowControl
                         break;
 
                     case "1":
-                        UngdomEllerPensionar();
+                        ReturneraPris();
                         break;
 
                     case "2":
@@ -54,28 +54,46 @@ namespace FlowControl
             }
         }
 
-        static void UngdomEllerPensionar()
+        static int? ReturneraPris()
         {
+            int freePrice = 0;
+            int youthPrice = 80;
+            int seniorPrice = 90;
+            int adultPrice = 120;
+
             Console.Write("Ange ålder: ");
             string? input = Console.ReadLine();
 
             if (!int.TryParse(input, out int alder))    // Jämför med int.Parse(input) --> "hej" --> Exception
             {
                 Console.WriteLine("Ogiltig ålder.");
-                return;
+                return null;
             }
 
             if (alder < 20)
             {
+                if (alder < 5)
+                {
+                    Console.WriteLine("Barn kan se gratis!");
+                    return freePrice;
+                }
                 Console.WriteLine("Ungdomspris: 80kr");
+                return youthPrice;
             }
             else if (alder > 64)
             {
+                if (alder > 100)
+                {
+                    Console.WriteLine("Grattis, du kan också se gratis!");
+                    return freePrice;
+                }
                 Console.WriteLine("Pensionärspris: 90kr");
+                return seniorPrice;
             }
             else
             {
                 Console.WriteLine("Standardpris: 120kr");
+                return adultPrice;
             }
         }
 
@@ -94,31 +112,13 @@ namespace FlowControl
 
             for (int i = 1; i <= antal; i++)
             {
-                Console.Write($"Ange ålder för person {i}: ");
-                string? alderInput = Console.ReadLine();
-
-                if (!int.TryParse(alderInput, out int alder) || alder < 0)
+                Console.Write("Person " + i);
+                int? returnedCost = null;
+                while (returnedCost == null)
                 {
-                    Console.WriteLine("Ogiltig ålder.");
-                    return;
+                    returnedCost = ReturneraPris();
                 }
-
-                if (alder < 5 || alder > 100)
-                {
-                    Console.WriteLine($"Person {i}: Gratis");
-                }
-                else if (alder < 20)
-                {
-                    total += 80;
-                }
-                else if (alder > 64)
-                {
-                    total += 90;
-                }
-                else
-                {
-                    total += 120;
-                }
+                total += (int)returnedCost;
             }
 
             Console.WriteLine($"Antal personer: {antal}");
